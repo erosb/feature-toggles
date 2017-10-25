@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Feature toggles</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+  </head>
+  <body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>Fetaure toggles</h1>
+      </section>
+      <section id="agenda" data-markdown>
+        <script type="text/template">
+          ## Agenda
+          
+          (this will be short)
+
+          * [What is it?](#what-is-it)
+          * [Types of feature toggles](#types-of-feature-toggles)
+          * [How do we do it now?](#how-do-we-do-it)
+          * [How can we do it better?](#how-can-we-do-it-better)
+
+        </script>
+      </section>
+
+      <section>
+        <section id="what-is-it" data-markdown>
+          <script type="text/template">
+            ### What is a feature toggle?
+            
+            * just a name for a "boolean", turning a feature on / off
+            * alternative of feature branching - this is what we currently do on UAT
+          </script>
+        </section>
+
+        <section id="types-of-feature-toggles" data-markdown>
+          <script type="text/template">
+              ### Types of feature toggles
+          </script>
+        </section>
+        
+        <section id="how-do-we-do-it" data-markdown>
+          <script type="text/template">
+              ### How do we do it now?
+              
+              * some of the `ConfigV2` properties are feature toggles:
+                * `sendReminderEmailEnabled`
+                * `deployedToProd` / `testServer`
+                * `emisEsActive`
+                * ...
+              * usually we inject the `ConfigV2` instance and the toggle-able class looks up the flag value
+          </script>
+        </section>
+        
+        <section id="how-can-we-do-it-better" data-markdown>
+          <script type="text/template">
+              ### How can we do it better
+              
+              * injecting the feature flag (`boolean`) itself instead of the object holding it (`ConfigV2`)
+                * eg. easier to test
+                * the object doesn't know more about its environment than it minimally has to
+              * choosing implementation depending on the state of the feature flag
+          </script>
+        </section>
+
+      </section>
+
+    </div>
+  </div>
+
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      history: true,
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        { src: 'plugin/markdown/marked.js' },
+        { src: 'plugin/markdown/markdown.js' },
+        { src: 'plugin/notes/notes.js', async: true },
+        { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+  </script>
+  </body>
+</html>
