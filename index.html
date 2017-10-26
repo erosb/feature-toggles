@@ -25,7 +25,7 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h1>Fetaure toggles</h1>
+        <h1>Feature toggles</h1>
       </section>
       <section id="agenda" data-markdown>
         <script type="text/template">
@@ -43,13 +43,13 @@
         </script>
       </section>
 
-      <section>
+      
         <section id="what-is-it" data-markdown>
           <script type="text/template">
             ### What is a feature toggle?
             
             * just a name for a "boolean", turning a feature on / off
-            * alternative of feature branching - this is what we currently do on UAT
+            * alternative of managing features with feature branches - this is what we currently do on UAT
             
           </script>
         </section>
@@ -82,6 +82,20 @@
               * Experiment toggle / canary release toggle or A/B testing toggle: showing a feature only for a few users - toggle context becomes complicated
               * Ops toggle: used by operators to turn non-critical features on/off eg. in case of unexpected high traffic  
           </script>
+        </section>
+        
+        <section id="types-of-feature-toggles" data-markdown>
+          <script type="text/template">
+			### Why do we need Release toggles
+			
+			* long-living feature branches take a lot of time to maintain
+			* even more time to review
+			* release toggles let us
+			   * merge the branch into develop when the code is stable but the feature is not complete yet
+			   * and we turn off the feature toggle
+			   * ready code goes into develop, but the incomplete feature is invisible
+			   * smaller PRs 
+		  </script>
         </section>
         
         <section id="storing-config" data-markdown>
@@ -132,12 +146,21 @@
                 * the object doesn't know more about its environment than it minimally has to
                 * decouples toggling decision from toggle router
               * choosing implementation depending on the state of the feature flag
+                * we use polymorphism instead of `if` - more OO
+                * less conditionals -> less code paths to test
+                * enforces us to extract the feature-specific behavior into a feature-specific class
               * these can work with dynamic toggles too
           </script>
         </section>
+        
+        <section id="how-can-we-do-it-better" data-markdown>
+          <script type="text/template">
+              ### Questions
+          </script>
+        </section>
 
-      </section>
 
+      
     </div>
   </div>
 
