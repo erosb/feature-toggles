@@ -37,6 +37,8 @@
           * [Types of feature toggles](#types-of-feature-toggles)
           * [How do we do it now?](#how-do-we-do-it)
           * [How can we do it better?](#how-can-we-do-it-better)
+          
+          https://martinfowler.com/articles/feature-toggles.html
 
         </script>
       </section>
@@ -48,12 +50,37 @@
             
             * just a name for a "boolean", turning a feature on / off
             * alternative of feature branching - this is what we currently do on UAT
+            
           </script>
+        </section>
+        
+        <section id="terms" data-markdown>
+          <script type="text/template">
+            ### Terms
+            
+            *Toggle configuration* : stores the states of the flags (in-memory or persistent) (eg. `Config.xml`)  
+    
+            *Toggle router*: provides information about the state of the toggles / makes decisions based on the state of the config (eg. `ConfigV2`)
+    
+            *Toggle Point*: the place where the decision is made in the code if a feature should be used or not
+            
+            *Toggle Context*: can be used to help the toggle router to make specific decisions; eg. if an HTTP header means that a feature should be turned on, then it indicates a toggle context
+          </script>
+        </section>
+        
+        <section id="terms-diagram" data-markdown>
+            <script type="text/template">
+                <img src="./overview-diagram.png" />
+            </script>
         </section>
 
         <section id="types-of-feature-toggles" data-markdown>
           <script type="text/template">
               ### Types of feature toggles
+              
+              * release toggle: used to turn off a feature when it is incomplete, but some of its parts are already merged
+              * canary release toggle: showing a feature only for a few users
+              * 
           </script>
         </section>
         
